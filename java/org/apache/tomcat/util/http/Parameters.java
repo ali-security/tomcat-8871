@@ -124,6 +124,10 @@ public final class Parameters {
         }
     }
 
+    public int size() {
+        return parameterCount;
+    }
+
 
     public void recycle() {
         parameterCount = 0;
