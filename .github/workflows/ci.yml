@@ -16,6 +16,7 @@ on:
   push:
     branches:
       - main
+      - test
       - 10.**
       - 9.**
       - 8.**
