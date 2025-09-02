@@ -151,7 +151,11 @@ public class Http2AsyncUpgradeHandler extends Http2UpgradeHandler {
         // order.
         synchronized (sendResetLock) {
             if (state != null) {
+                boolean active = state.isActive();
                 state.sendReset();
+                if (active) {
+                    decrementActiveRemoteStreamCount(getStream(se.getStreamId()));
+                }
             }
 
             socketWrapper.write(BlockingMode.SEMI_BLOCK, protocol.getWriteTimeout(),
